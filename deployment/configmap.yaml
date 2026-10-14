@@ -16,4 +16,9 @@ data:
   EMAIL_AUTH: "true"
   EMAIL_STARTTLS_ENABLE: "true"
   EMAIL_DEBUG: "true"
-  OAUTH_REDIRECT_BASE_URL: "https://api.posadskiy.com/api"
+  # Public auth base after Traefik strips /auth. Google/Apple redirect:
+  # https://api.posadskiy.com/auth/oauth2/callback/{google|apple}
+  OAUTH_REDIRECT_BASE_URL: "https://api.posadskiy.com/auth"
+  # Empty: each app passes return_to. Kept so older images still resolve the placeholder.
+  OAUTH_FRONTEND_REDIRECT_URL: ""
+  OAUTH_ALLOWED_FRONTEND_REDIRECT_URLS: "https://repeaty.posadskiy.com/oauth/callback,https://costy.posadskiy.com/oauth/callback,https://grammarbar.com/oauth/callback"

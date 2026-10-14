@@ -81,7 +81,7 @@ The **`deployment/`** directory is used to **prepare** the k3s cluster and **bui
 
 | Path | Purpose |
 |------|--------|
-| `configmap.yaml` | Shared ConfigMap (DB URLs, env) for namespace `microservices` |
+| `configmap.yaml` | Shared ConfigMap (DB URLs, OAuth URLs, env) for namespace `microservices` |
 | `secrets.yaml` | Shared Secrets (envsubst placeholders; set vars before apply) |
 | `namespace.yaml` | Namespace `microservices` |
 | `ingress/traefik-letsencrypt.yaml` | Cluster-level: Traefik ACME (Let’s Encrypt) in kube-system |
@@ -112,6 +112,7 @@ export DOCKERHUB_TOKEN=your-token
 export K3S_SERVER_IP=your-server-ip
 export K3S_SSH_USER=your-ssh-user
 # Plus vars for deployment/secrets.yaml: AUTH_DATABASE_PASSWORD, JWT_GENERATOR_SIGNATURE_SECRET, GITHUB_*, etc.
+# ConfigMap includes OAUTH_REDIRECT_BASE_URL and OAUTH_ALLOWED_FRONTEND_REDIRECT_URLS (repeaty, costy, grammarbar).
 ```
 
 #### 2. Install k3s (only if the server doesn’t have it)
